@@ -16,6 +16,12 @@ Usage case
 =====================
 Let's say you are using Amazon SES and you want to validate your email addresses before you send via SES (or any other provder).  Amazon is quite particular about bounce rates and cchecking prior to sending via SES can prevent your account from being blocked.
 
+Simplest usage 
+=====================
+To test an email address via a class call.  It returns boolean if success and a list of messages
+
+    success,msgs=EmailAuthentication::Base.check('an email adresss')
+
 Use gem
 =====================
 To test an email address.  It returns boolean if success and a list of messages

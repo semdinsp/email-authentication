@@ -10,13 +10,17 @@ module EmailAuthentication
   def debug
     true
   end
+  def self.check(address)
+    tmp=self.new
+    return tmp.check(address)
+  end
   def set_address(address)
     raise "address nil" if address==nil
     raise "address blank" if address==""
     self.address=address.to_s
     @flag=true
   end
-  # this needs work.  Anyone who can improve the regex i would be happy
+  # this needs work.  Anyone who can improve the regex i would be happy to put in their changes
   def check_format
     @@email_regex = /^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Z‌​a-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/i
     res=(@address =~ @@email_regex)
@@ -55,7 +59,7 @@ module EmailAuthentication
     else
       msg="nil domain"
     end
-    puts "ret is #{ret.inspect}"
+    # puts "ret is #{ret.inspect}"
     [flag,msg]
   end
   # need to think about this and check the domain via telnet
