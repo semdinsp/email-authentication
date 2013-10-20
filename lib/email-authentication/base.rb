@@ -64,6 +64,9 @@ module EmailAuthentication
   end
   # need to think about this and check the domain via telnet
   def check_smtp
+     # smtp = Net::Telnet::new("Host" => 'google.com', 'Port' => 25, "Telnetmode" => false)
+     # smtp.cmd("user " + "your_username_here") { |c| print c }
+     
      [true,"smtp ok"]
    end
    # run all the checks
@@ -76,6 +79,7 @@ module EmailAuthentication
         res,msg= self.send(cmdstring)
          @flag=@flag && res
          @message << msg }
+    [@flag,@message.join(',').to_s]
   end
  
  
