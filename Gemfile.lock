@@ -2,12 +2,14 @@ PATH
   remote: .
   specs:
     email-authentication (0.1.0)
+      dnsruby
 
 GEM
   remote: https://rubygems.org/
   specs:
     codeclimate-test-reporter (0.1.1)
       simplecov (>= 0.7.1, < 1.0.0)
+    dnsruby (1.54)
     minitest (5.0.8)
     multi_json (1.8.0)
     simplecov (0.7.1)

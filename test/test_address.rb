@@ -31,10 +31,9 @@ class EmailAuthenticationTest <  Minitest::Test
 
     end
   
-    def test_success
+    def test_goodemail
           success,msg= @f.check(@success)
-          assert success,"check did not succeed"
-
+          assert success,"check did not succeed #{msg}"
       end
         def test_resolver_onlyonce
               res=@f.resolver
@@ -43,16 +42,20 @@ class EmailAuthenticationTest <  Minitest::Test
 
           end
       #check a particular format
-      def test_success
+      def test_checkformat_good
             @f.set_address(@success)
             success,msg= @f.check_format
             assert success,"check did not succeed"
 
         end
-    
-    
-  
- 
+         def test_bademails
+             ['test','test#sed', 'test@jack'].each { |e| 
+                @f.set_address(e)
+                success,msg= @f.check_format
+                assert !success,"check did  succeed but it should not for #{e}"
+              }
+
+            end
  
 
 end

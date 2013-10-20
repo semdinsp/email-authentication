@@ -9,6 +9,7 @@ script:
   - bundle install
   - cd test; 
   - ruby test_address.rb
+  - ruby test_mx_records.rb
 notifications:
   recipients:
     - scott.sproule@estormtech.com
