@@ -8,7 +8,7 @@ script:
   - bundle
   - bundle install
   - cd test; 
-  - ruby test_randprize.rb
+  - ruby test_address.rb
 notifications:
   recipients:
     - scott.sproule@estormtech.com
