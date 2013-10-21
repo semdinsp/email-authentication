@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    email-authentication (0.1.2)
+    email-authentication (0.1.4)
       dnsruby
 
 GEM
@@ -11,7 +11,7 @@ GEM
       simplecov (>= 0.7.1, < 1.0.0)
     dnsruby (1.54)
     minitest (5.0.8)
-    multi_json (1.8.0)
+    multi_json (1.8.2)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)

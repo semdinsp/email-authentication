@@ -6,5 +6,5 @@ require 'email-authentication'
  puts "Address is #{[address]}"
  @f=EmailAuthentication::Base.new
  success,msg=@f.check(address)
- puts "Success: #{address}" if success
+ puts "Success: #{address} messages #{msg}" if success
  puts "Failure: #{address} messages: #{msg}" if !success

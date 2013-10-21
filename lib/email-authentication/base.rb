@@ -21,10 +21,11 @@ module EmailAuthentication
     @flag=true
   end
   # this needs work.  Anyone who can improve the regex i would be happy to put in their changes
+  # see alsothe validate_email_format gem for rails
   def check_format
     @@email_regex = /^(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Z‌​a-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6}$/i
     res=(@address =~ @@email_regex)
-    puts " res is #{res}"
+    #puts " res is #{res}"
     if res
       [true,"format ok"]
     else
@@ -40,7 +41,7 @@ module EmailAuthentication
   def check_mx
     domain=self.address.split('@')
     @domain = domain[1]
-    puts "domain is #{domain}"
+    #puts "domain is #{domain}"
     flag=false
     if @domain!=nil
           begin
@@ -63,6 +64,14 @@ module EmailAuthentication
     [flag,msg]
   end
   # need to think about this and check the domain via telnet
+  #S: 220 smtp.example.com ESMTP Postfix
+  #C: HELO relay.example.org
+  #S: 250 Hello relay.example.org, I am glad to meet you
+  #C: MAIL FROM:<bob@example.org>
+  #S: 250 Ok
+  #C: RCPT TO:<alice@example.com>
+  #S: 250 Ok
+  
   def check_smtp
      # smtp = Net::Telnet::new("Host" => 'google.com', 'Port' => 25, "Telnetmode" => false)
      # smtp.cmd("user " + "your_username_here") { |c| print c }
