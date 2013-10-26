@@ -7,7 +7,6 @@ class EmailSMTPAuthenticationTest <  Minitest::Test
   def setup
     @f=EmailAuthentication::Base.new
     @success='scott.sproule@ficonab.com'
-    @failruntimeerror=[nil,""]
     @from='scott.sproule@estormtech.com'
     @success2='info2@paulaner.com.sg'
   end
@@ -21,7 +20,7 @@ class EmailSMTPAuthenticationTest <  Minitest::Test
     
     def test_smtp_mx
            success,msg= @f.check(@success2,@from)
-           assert success,"check did not succeed"
+           assert success,"check did not succeed #{msg}"
            puts msg
     end
  
