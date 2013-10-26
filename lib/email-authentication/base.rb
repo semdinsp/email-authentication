@@ -51,7 +51,7 @@ module EmailAuthentication
           begin
            ret = self.resolver.query(@domain, Types.MX)
             if ret.answer!=nil and ret.rcode=='NOERROR'
-              @mx=ret.answer.first.exchange.to_s if ret.answer!=nil
+              @mx=ret.answer.first.exchange.to_s if ret.answer!=nil 
               @mx=@mx.downcase
               msg= "mx record #{self.mx}"
               puts msg
@@ -60,6 +60,9 @@ module EmailAuthentication
            rescue Dnsruby::NXDomain 
              msg="non existing domain #{@domain}"
              puts msg
+           rescue Exception => e
+                msg="exception #{e.message}"
+                puts msg
            end
         
     else

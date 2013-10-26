@@ -24,7 +24,7 @@ puts "Check check_and_addvtiger_list.rb filename <from> <url> <username> <key>"
      @vtiger_cmd.addleademail(options,ln,co,email,hashv)
   end
  
- puts "Address is #{[address]} From address [#{from}]"
+ #puts "Address is #{[address]} From address [#{from}]"
  setup_vtiger_internal
  @f=EmailAuthentication::Base.new
  File.open(filename).each do |line|

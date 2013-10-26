@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    email-authentication (0.1.5)
+    email-authentication (0.2.2)
       dnsruby
 
 GEM
