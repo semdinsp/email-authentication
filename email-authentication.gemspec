@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = "email-authentication"
-  s.version     = "0.1.6"
+  s.version     = "0.2.0"
   s.author      = "Scott Sproule"
   s.email       = "scott.sproule@ficonab.com"
   s.homepage    = "http://github.com/semdinsp/email-authentication"
   s.summary     = "Simple gem to try and authenticate email address"
   s.description = "Try and authenticate email address, check format, lookup mx record and check smtp connectivity"
-  s.executables = ['emailcheck.rb','check_and_addvtiger.rb']    #should be "name.rb"
+  s.executables = ['emailcheck.rb','check_and_addvtiger.rb','check_and_addvtiger_list.rb']    #should be "name.rb"
   s.files        = Dir["{lib,test}/**/*"] +Dir["bin/*.rb"] + Dir["[A-Z]*"] # + ["init.rb"]
   s.require_path = "lib"
   s.license = 'MIT'

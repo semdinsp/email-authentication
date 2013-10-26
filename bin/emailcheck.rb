@@ -7,6 +7,6 @@ puts "Check emailcheck.rb <address> <from>"
   from=ARGV[1] 
  puts "Address is #{[address]} From address [#{from}]"
  @f=EmailAuthentication::Base.new
- success,msg=@f.check(address)
+ success,msg=@f.check(address,from)
  puts "Success: #{address} messages #{msg}" if success
  puts "Failure: #{address} messages: #{msg}" if !success
