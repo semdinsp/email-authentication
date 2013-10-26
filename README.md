@@ -2,6 +2,11 @@
 [![Code Climate](https://codeclimate.com/repos/524654d9c7f3a31b29038e3a/badges/58ed8386e3e6d266c7ac/gpa.png)](https://codeclimate.com/repos/524654d9c7f3a31b29038e3a/feed)
 [![Gem Version](https://badge.fury.io/rb/email-authentication.png)](http://badge.fury.io/rb/email-authentication)
 
+email-authentication gem
+========================
+
+Given an email address, check to see if it is valid.  Check the structure of the address, MX record of the domain and if the domain accepts the SMTP connection and the recipient address.  Checking the smtp connection is unique to this gem that I am aware of.
+
 NaySayers Read here
 ===================
 
@@ -11,10 +16,6 @@ Alternatives
 ============
 See validates_email_format_of gem
 
-email-authentication gem
-========================
-
-Given an email address, check to see if it is valid.  Check the structure of the address, MX record of the domain and if the domain accepts the SMTP connection and the recipient address.  Checking the smtp connection is unique to this gem that I am aware of.
 
 Usage case
 =====================
@@ -24,14 +25,14 @@ Simplest usage
 =====================
 To test an email address via a class call.  It returns boolean if success and a list of messages
 
-    success,msgs=EmailAuthentication::Base.check('an email adresss')
+    success,msgs=EmailAuthentication::Base.check('an email adresss','from address')
 
 Use gem
 =====================
-To test an email address.  It returns boolean if success and a list of messages
+To test an email address.  It returns boolean if success and a list of messages from the tests.
 
     @f=EmailAuthentication::Base.new
-    success,msgs=@f.check('an email adresss')
+    success,msgs=@f.check('an email adresss','from address')
     
 
 Use just a portion of gem
@@ -39,5 +40,5 @@ Use just a portion of gem
 If you just want to use a portion of the gem (eg check_mx record)  then just set the address and call the check funciton
 
     @f=EmailAuthentication::Base.new
-    @f.set_address(@success)
+    @f.set_address('to address',"from address")
     success,msg= @f.check_format
