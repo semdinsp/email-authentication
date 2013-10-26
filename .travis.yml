@@ -10,6 +10,7 @@ script:
   - cd test; 
   - ruby test_address.rb
   - ruby test_mx_records.rb
+  - ruby test_smtp.rb
 notifications:
   recipients:
     - scott.sproule@estormtech.com

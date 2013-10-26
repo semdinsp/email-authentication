@@ -8,11 +8,12 @@ class EmailMXAuthenticationTest <  Minitest::Test
     @f=EmailAuthentication::Base.new
     @success='scott.sproule@ficonab.com'
     @failruntimeerror=[nil,""]
+    @from='scott.sproule@estormtech.com'
     
   end
   
   def test_good_domain
-        @f.set_address(@success)
+        @f.set_address(@success,@from)
         success,msg= @f.check_mx
         assert success,"check did not succeed"
         assert @f.mx!=nil, "mx should be set"
@@ -20,21 +21,17 @@ class EmailMXAuthenticationTest <  Minitest::Test
     end
     
     def test_bad_domain
-          @f.set_address('test@baddomainxx23345.com')
+          @f.set_address('test@baddomainxx23345.com',@from)
           success,msg= @f.check_mx
           assert !success,"check did not succeed"
 
       end
       def test_bad_domain2
-            @f.set_address('test@baddom  ainxx23345.com')
+            @f.set_address('test@baddom  ainxx23345.com',@from)
             success,msg= @f.check_mx
             assert !success,"check did not succeed"
 
         end
- 
-    
-  
- 
  
 
 end

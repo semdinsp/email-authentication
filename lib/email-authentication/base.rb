@@ -1,23 +1,26 @@
 require 'rubygems'
 require 'dnsruby'
 include Dnsruby
+require 'net/telnet'
 
 # Use the system configured nameservers to run a query
 
 module EmailAuthentication
   class Base
-    attr_accessor :address, :mx, :message, :domain
+    attr_accessor :address, :mx, :message, :domain, :from
   def debug
     true
   end
-  def self.check(address)
+  def self.check(address,from)
     tmp=self.new
-    return tmp.check(address)
+    return tmp.check(address,from)
   end
-  def set_address(address)
+  def set_address(address,from="")
     raise "address nil" if address==nil
     raise "address blank" if address==""
+    raise "from address blank" if from==""
     self.address=address.to_s
+    self.from=from
     @flag=true
   end
   # this needs work.  Anyone who can improve the regex i would be happy to put in their changes
@@ -48,6 +51,7 @@ module EmailAuthentication
            ret = self.resolver.query(@domain, Types.MX)
             if ret.answer!=nil and ret.rcode=='NOERROR'
               @mx=ret.answer.first.exchange.to_s if ret.answer!=nil
+              @mx=@mx.downcase
               msg= "mx record #{self.mx}"
               puts msg
               flag=true
@@ -73,14 +77,43 @@ module EmailAuthentication
   #S: 250 Ok
   
   def check_smtp
-     # smtp = Net::Telnet::new("Host" => 'google.com', 'Port' => 25, "Telnetmode" => false)
-     # smtp.cmd("user " + "your_username_here") { |c| print c }
-     
-     [true,"smtp ok"]
+      flag=false
+      msg='smtp ok'
+      domain=self.from.split('@')
+      @fromdomain = domain[1]
+      if @mx.include?('google') or @mx.include?('live.com')
+         flag=true
+         msg="smtp not checked since google or live: #{@mx}"
+      else
+        begin 
+          smtp = Net::Telnet::new("Host" => @mx, 'Port' => 25, "Telnetmode" => false, "Prompt" => /^\+OK/)
+          c=""
+          msg=c
+          cmd="HELO " + @fromdomain
+          smtp.cmd('String' => cmd, 'Match'=> /^250/) { |c| print "CMD: #{cmd} RESP: #{c}" 
+                 msg << c}
+          cmd="MAIL FROM:<" +@from+ ">"
+          sleep 0.5
+          smtp.cmd('String' => cmd, 'Match'=> /^250/ ) { |c| print "CMD: #{cmd} RESP: #{c}" 
+                   msg << c}
+          cmd="RCPT TO:<" +@address+ ">"
+          sleep 0.5
+          smtp.cmd('String' => cmd, 'Match'=> /^250/ ) { |c| print "CMD: #{cmd} RESP: #{c}" 
+                           msg=c
+                           flag=true if c.include?('250') }
+          cmd='quit'
+          smtp.cmd('String' => cmd, 'Match'=> /^221/ ) { |c| print "CMD: #{cmd} RESP: #{c}"           }
+        rescue Exception => e
+          @flag=false
+          msg= "smtp exception #{e.message}"
+        end
+      end
+      
+     [flag,msg]
    end
    # run all the checks
-  def check(address)
-    self.set_address(address)
+  def check(address,from)
+    self.set_address(address,from)
     @message=[]
     puts "checking #{@address}"
     ['format','mx','smtp'].each { |cmd| 
