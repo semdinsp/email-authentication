@@ -7,7 +7,7 @@ require 'net/telnet'
 
 module EmailAuthentication
   class Base
-    attr_accessor :address, :mx, :message, :domain, :from, :fromdomain
+    attr_accessor :address, :mx, :message, :domain, :from, :fromdomain, :name
   def debug
     true
   end
@@ -44,6 +44,7 @@ module EmailAuthentication
   def check_mx
     domain=self.address.split('@')
     @domain = domain[1]
+    @name=domain[0]
     #puts "domain is #{domain}"
     flag=false
     if @domain!=nil

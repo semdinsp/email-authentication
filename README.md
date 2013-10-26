@@ -14,11 +14,11 @@ See validates_email_format_of gem
 email-authentication gem
 ========================
 
-Given an email address, check to see if it is valid.  Check the structure of the address, MX record of the domain and if the domain accpts the SMTP connection
+Given an email address, check to see if it is valid.  Check the structure of the address, MX record of the domain and if the domain accepts the SMTP connection and the recipient address.  Checking the smtp connection is unique to this gem that I am aware of.
 
 Usage case
 =====================
-Let's say you are using Amazon SES and you want to validate your email addresses before you send via SES (or any other provder).  Amazon is quite particular about bounce rates and cchecking prior to sending via SES can prevent your account from being blocked.
+Let's say you are using Amazon SES and you want to validate your email addresses before you send via SES (or any other provder).  Amazon is quite particular about bounce rates and checking prior to sending via SES can prevent your account from being blocked.
 
 Simplest usage 
 =====================

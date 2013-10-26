@@ -55,6 +55,13 @@ class EmailAuthenticationTest <  Minitest::Test
             assert success,"check did not succeed"
 
         end
+         def test_name
+                @f.set_address(@success,@from)
+                success,msg= @f.check_format
+                assert @f.name='scott.sproule'
+                assert success,"check did not succeed"
+
+            end
          def test_class_variable
                 success,msg= EmailAuthentication::Base.check(@success,@from)
                 assert success,"check did not succeed"
