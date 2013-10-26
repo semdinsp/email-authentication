@@ -7,7 +7,7 @@ require 'net/telnet'
 
 module EmailAuthentication
   class Base
-    attr_accessor :address, :mx, :message, :domain, :from
+    attr_accessor :address, :mx, :message, :domain, :from, :fromdomain
   def debug
     true
   end
