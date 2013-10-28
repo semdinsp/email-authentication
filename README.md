@@ -10,7 +10,7 @@ Given an email address, check to see if it is valid.  Check the structure of the
 NaySayers Read here
 ===================
 
-It is NOT possible to verify an email address unless you send an email to it.  And even then you may get a transient bounce.  This gem tries its best to check to see if the address is valid.  But is DOES NOT guarantee validity.  Then why this gem?  Because sometimes you receive a list of email addresses and you want to test them before adding to an email service provider list so your account is not blocked due to failing addresses.  This gem helps in that process
+It is NOT possible to verify an email address unless you send an email to it.  And even then you may get a transient bounce.  This gem tries its best to check to see if the address is valid.  But is DOES NOT guarantee validity.  Then why this gem?  Because sometimes you receive a list of email addresses [when you are at a tradeshow and someone types in the wrong addresses etc.] and you want to test them before adding to an email service provider list so your account is not blocked due to failing addresses.  This gem helps in that process
 
 Alternatives
 ============

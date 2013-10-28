@@ -27,13 +27,15 @@ puts "Check check_and_addvtiger_list.rb filename <from> <url> <username> <key>"
  #puts "Address is #{[address]} From address [#{from}]"
  setup_vtiger_internal
  @f=EmailAuthentication::Base.new
+ count=0
  File.open(filename).each do |line|
- address=line.chomp
- success,msg=@f.check(address,from)
+   count=count+1
+   address=line.chomp
+   success,msg=@f.check(address,from)
       if success
       addleademail(@f.name,@f.domain,address)
-      puts "Success: #{address} messages #{msg}" if success
+      puts "Success: #{count} #{address} messages #{msg}" if success
     end
  
-    puts "Failure: #{address} messages: #{msg}" if !success
+    puts "Failure: #{count} #{address} messages: #{msg}" if !success
  end

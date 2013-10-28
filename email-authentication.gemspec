@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "email-authentication"
-  s.version     = "0.2.3"
+  s.version     = "0.2.4"
   s.author      = "Scott Sproule"
   s.email       = "scott.sproule@ficonab.com"
   s.homepage    = "http://github.com/semdinsp/email-authentication"
@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.rubyforge_project = s.name
   s.required_rubygems_version = ">= 1.3.4"
   s.add_runtime_dependency "dnsruby"
+  s.add_runtime_dependency "thor"
 end

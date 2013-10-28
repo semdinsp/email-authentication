@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    email-authentication (0.2.3)
+    email-authentication (0.2.4)
       dnsruby
+      thor
 
 GEM
   remote: https://rubygems.org/
@@ -16,6 +17,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)
     simplecov-html (0.7.1)
+    thor (0.18.1)
 
 PLATFORMS
   ruby

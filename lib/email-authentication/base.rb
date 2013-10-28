@@ -86,6 +86,7 @@ module EmailAuthentication
       domain=self.from.split('@')
       @fromdomain = domain[1]
       if @mx.include?('google') or @mx.include?('live.com')
+         # DO I Need to do this?
          flag=true
          msg="smtp not checked since google or live: #{@mx}"
       else
