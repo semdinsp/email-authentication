@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    email-authentication (0.2.4)
+    email-authentication (0.2.5)
       dnsruby
       thor
 

@@ -82,7 +82,7 @@ module EmailAuthentication
   
   def check_smtp
       flag=false
-      msg='smtp ok'
+      msg='smtp not ok'
       domain=self.from.split('@')
       @fromdomain = domain[1]
       if @mx.include?('google') or @mx.include?('live.com')
@@ -112,7 +112,7 @@ module EmailAuthentication
           @flag=false
           msg= "smtp exception #{e.message}"
         end
-      end
+      end if @mx!=nil
       
      [flag,msg]
    end
