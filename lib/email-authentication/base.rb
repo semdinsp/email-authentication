@@ -94,16 +94,16 @@ module EmailAuthentication
           c=""
           msg=c
           cmd="HELO " + @fromdomain
-          smtp.cmd('String' => cmd, 'Match'=> /^250/) { |c| print "CMD: #{cmd} RESP: #{c}" 
+          smtp.cmd('String' => cmd, 'Match'=> /^250/) { |c| #print "CMD: #{cmd} RESP: #{c}" 
                  msg << c}
           cmd="MAIL FROM:<" +@from+ ">"
           sleep 0.5
-          smtp.cmd('String' => cmd, 'Match'=> /^250/ ) { |c| print "CMD: #{cmd} RESP: #{c}" 
+          smtp.cmd('String' => cmd, 'Match'=> /^250/ ) { |c| #print "CMD: #{cmd} RESP: #{c}" 
                    msg << c}
           cmd="RCPT TO:<" +@address+ ">"
           sleep 0.5
           smtp.cmd('String' => cmd, 'Match'=> /^250/ ) { |c| print "CMD: #{cmd} RESP: #{c}" 
-                           msg=c
+                           msg= "smtp test: #{cmd} resp: #{c}"
                            flag=true if c.include?('250') }
           cmd='quit'
           smtp.cmd('String' => cmd, 'Match'=> /^221/ ) { |c| print "CMD: #{cmd} RESP: #{c}"           }

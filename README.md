@@ -19,7 +19,7 @@ See validates_email_format_of gem
 
 Usage case
 =====================
-Let's say you are using Amazon SES and you want to validate your email addresses before you send via SES (or any other provder).  Amazon is quite particular about bounce rates and checking prior to sending via SES can prevent your account from being blocked.
+Let's say you are using Amazon SES and you want to validate your email addresses before you send via SES (or any other provider).  Amazon is quite particular about bounce rates and checking your list prior to sending via SES can prevent your account from being blocked.
 
 Simplest usage 
 =====================
@@ -29,7 +29,7 @@ To test an email address via a class call.  It returns boolean if success and a 
 
 Use gem
 =====================
-To test an email address.  It returns boolean if success and a list of messages from the tests.
+To test an email address.  It returns boolean true if success and a list of messages from the tests.  The messages are primarily used to check on where the address is failing.
 
     @f=EmailAuthentication::Base.new
     success,msgs=@f.check('an email adresss','from address')
@@ -37,8 +37,8 @@ To test an email address.  It returns boolean if success and a list of messages 
 
 Use just a portion of gem
 =====================
-If you just want to use a portion of the gem (eg check_mx record)  then just set the address and call the check funciton
+If you just want to use a portion of the gem (eg check_mx record)  then just set the address and call the check function (also see check_smtp)
 
     @f=EmailAuthentication::Base.new
     @f.set_address('to address',"from address")
-    success,msg= @f.check_format
+    success,msg= @f.check_mx
